@@ -16,10 +16,6 @@ app.use("/api", taskRoutes)
 
 connectDB();
 
-const task = createTask("Teste", "Essa é uma tarefa de teste", "Not Started").then(newTask => {console.log("Tarefa criada: ", newTask)});
-
-
-
 
 
 
