@@ -1,4 +1,4 @@
-# Javascript Task Tracker
+# API REST de Gerenciamento de Tarefas com Node.js e SQL Server 
 
 Esta é uma API de gerenciamento de tarefas, desenvolvida com Node.js, Express e Microsoft SQL Server. Através dela é possível a **criação**, **leitura**, **atualização** e **exclusão** de tarefas. A API suporta realizar filtros baseados em um ou mais status, gravando cada tarefa em uma tabela do banco de dados.
 
@@ -44,7 +44,7 @@ ___
 
 # Endpoints
 ## POST /tasks
-###Descrição: 
+### Descrição: 
 Cria uma nova tarefa.
 ### Body: 
 { "title": "Título da Tarefa", "description": "Descrição da Tarefa", "status": "not_started" }
