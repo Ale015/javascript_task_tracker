@@ -190,4 +190,38 @@ router.delete("/tasks/:id", async (req, res) => {
 })
 
 
+router.patch("/tasks/:id", async  (req, res) => {
+    const {id} = req.params;
+    const {status} = req.body;
+
+    const query = `UPDATE Tasks SET status = @status WHERE id = @id`
+
+
+    if(!status){
+        throw res.status(400).json({ error: "Status é obrigatório" });
+    }
+
+    const formattedStatus = status.toLowerCase().replace(/\s+/g, "_");
+
+    if (!allowedStatuses.includes(formattedStatus)) {
+        return res.status(400).json({
+            message: "Status inválido. Use: not_started, in_progress ou completed."
+        });
+    }
+
+    try {
+        const pool =  await mssql.connect();
+        const result = await pool.request().input("id", mssql.Int, id).input("status", mssql.NVarChar, status).query(query)
+
+        if (result.rowsAffected[0] === 0) {
+            return res.status(404).json({ message: "Tarefa não encontrada." });
+        }
+
+        res.json({ message: "Status atualizado com sucesso" });
+    } catch (error) {
+        console.error("Erro ao atualizar status:", error);
+        res.status(500).json({ message: "Erro ao atualizar status." });
+    }
+})
+
 export default router;

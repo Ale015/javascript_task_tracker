@@ -82,8 +82,20 @@ Atualiza uma tarefa existente pelo ID.
 400: Parâmetros inválidos ou tarefa não encontrada.
 500: Erro ao tentar atualizar a tarefa.
 
+## PATCH /tasks/:id
+### Descrição:
+Atualiza apenas o status de uma tarefa pelo ID.
+### Body:
+{ "status": "completed" }
+### Resposta:
+200: Status atualizado com sucesso.
+400: Status inválido ou não fornecido.
+404: Tarefa não encontrada.
+500: Erro ao tentar atualizar o status da tarefa.
+
 ## DELETE /tasks/:id
-### Descrição: Deleta uma tarefa pelo ID.
+### Descrição: 
+Deleta uma tarefa pelo ID.
 ### Resposta:
 204: Tarefa deletada com sucesso.
 404: Tarefa não encontrada.

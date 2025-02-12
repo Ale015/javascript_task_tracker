@@ -12,17 +12,25 @@ import { createTask } from "./models/taskModel.js";
 dotenv.config();
 
 const app = express();
+
+const corsOptions = {
+    origin: ['http://localhost:3000', 'http://192.168.1.94:3000'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH']
+  };
+  
+  app.use(cors(corsOptions));
+  
+
 app.use(express.json());
 app.use("/api", taskRoutes)
 
-app.use(cors())
 
 connectDB();
 
 
 
 
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 app.listen(PORT, ()=> {
     console.log(`Servidor rodando na porta: ${PORT}`)
 })
